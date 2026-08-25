@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>オリジナルキーボード</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 入力結果を表示するエリア -->
+  <div class="display-container">
+    <textarea id="output" placeholder="ここに表示されます" readonly></textarea>
+  </div>
+
+  <!-- キーボードエリア -->
+  <div class="keyboard">
+    <!-- 画像ボタンの例（数字の1） -->
+    <button class="key-btn" data-value="1">
+      <img src="images/key1.png" alt="1">
+    </button>
+    
+    <!-- 画像ボタンの例（数字の2） -->
+    <button class="key-btn" data-value="2">
+      <img src="images/key2.png" alt="2">
+    </button>
+
+    <!-- クリアボタン -->
+    <button id="clear-btn">消去</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
