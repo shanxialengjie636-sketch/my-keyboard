@@ -1,0 +1,19 @@
+// 要素の取得
+const output = document.getElementById('output');
+const keyButtons = document.querySelectorAll('.key-btn');
+const clearBtn = document.getElementById('clear-btn');
+
+// 各キーボタンにタップ（クリック）イベントを登録
+keyButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // buttonの data-value 属性から入力したい値を取得
+    const value = button.getAttribute('data-value');
+    // テキストエリアに文字を追加
+    output.value += value;
+  });
+});
+
+// 消去ボタンの処理
+clearBtn.addEventListener('click', () => {
+  output.value = '';
+});
