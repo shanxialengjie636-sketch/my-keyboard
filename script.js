@@ -1,25 +1,26 @@
-let enteredPin = ""; // 入力された数字をそのまま蓄積
-const maxLen = 4;    // 最大4桁
+let enteredPin = ""; 
+const maxLen = 4;
+const correctAnswer = "1234"; // ★ここに正解の4桁の数字を設定します
 
 const pinDisplay = document.getElementById("pin-display");
 const numKeys = document.querySelectorAll(".key-btn[data-val]");
 const btnDelete = document.getElementById("btn-delete");
 const btnConfirm = document.getElementById("btn-confirm");
 
-// 画面表示の更新処理
+const inputScreen = document.getElementById("input-screen");
+const successScreen = document.getElementById("success-screen");
+const btnReset = document.getElementById("btn-reset");
+
 function updateDisplay() {
   if (enteredPin.length === 0) {
-    // 1文字も入力されていない場合
     pinDisplay.textContent = "暗証番号を入力してください";
     pinDisplay.classList.add("empty");
   } else {
-    // 数字が入力されている場合、そのまま表示
     pinDisplay.textContent = enteredPin;
     pinDisplay.classList.remove("empty");
   }
 }
 
-// 数字ボタンのクリック
 numKeys.forEach(button => {
   button.addEventListener("click", () => {
     if (enteredPin.length < maxLen) {
@@ -29,7 +30,6 @@ numKeys.forEach(button => {
   });
 });
 
-// 削除ボタン（末尾の1文字を消す）
 btnDelete.addEventListener("click", () => {
   if (enteredPin.length > 0) {
     enteredPin = enteredPin.slice(0, -1);
@@ -37,16 +37,26 @@ btnDelete.addEventListener("click", () => {
   }
 });
 
-// 確定ボタン
+// 確定ボタンの判定処理
 btnConfirm.addEventListener("click", () => {
-  if (enteredPin.length === maxLen) {
-    alert("入力された暗証番号: " + enteredPin);
-    enteredPin = ""; // 入力をクリア
-    updateDisplay();
+  if (enteredPin === correctAnswer) {
+    // 正解の場合：入力画面を隠して成功画面を表示
+    inputScreen.classList.add("hidden");
+    successScreen.classList.remove("hidden");
   } else {
-    alert("4桁の数字を入力してください。");
+    // 不正解の場合
+    alert("暗証番号が違います。");
+    enteredPin = "";
+    updateDisplay();
   }
 });
 
-// 初期化
+// リセットボタン（最初に戻る）
+btnReset.addEventListener("click", () => {
+  enteredPin = "";
+  updateDisplay();
+  successScreen.classList.add("hidden");
+  inputScreen.classList.remove("hidden");
+});
+
 updateDisplay();
