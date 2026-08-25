@@ -96,3 +96,18 @@ body {
   box-shadow: 0 0 15px rgba(0, 170, 255, 0.8);
   transform: scale(0.96);
 }
+
+/* 画面切り替え用の非表示スタイル */
+.hidden {
+  display: none !important;
+}
+
+.success-content {
+  padding: 20px 0;
+  font-size: 18px;
+}
+
+#btn-reset {
+  margin-top: 20px;
+  width: 100%;
+}
