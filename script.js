@@ -10,7 +10,6 @@ const btnConfirm = document.getElementById("btn-confirm");
 const inputScreen = document.getElementById("input-screen");
 const successScreen = document.getElementById("success-screen");
 const successVideo = document.getElementById("success-video");
-const btnReset = document.getElementById("btn-reset");
 
 // 画面表示の更新
 function updateDisplay() {
@@ -44,14 +43,13 @@ btnDelete.addEventListener("click", () => {
 // 確定ボタンの判定
 btnConfirm.addEventListener("click", () => {
   if (enteredPin === correctAnswer) {
-    // 正解：入力画面を隠して動画画面を表示
+    // 正解：キーボード画面を隠して大画面動画を表示
     inputScreen.classList.add("hidden");
     successScreen.classList.remove("hidden");
     
     // 動画を最初から再生
     successVideo.currentTime = 0;
     successVideo.play().catch(error => {
-      // ブラウザの自動再生制限がかかった場合の対策
       console.log("自動再生が制限されました:", error);
     });
   } else {
@@ -59,19 +57,6 @@ btnConfirm.addEventListener("click", () => {
     enteredPin = "";
     updateDisplay();
   }
-});
-
-// リセットボタン（最初に戻る）
-btnReset.addEventListener("click", () => {
-  // 動画を一時停止して巻き戻す
-  successVideo.pause();
-  successVideo.currentTime = 0;
-  
-  enteredPin = "";
-  updateDisplay();
-  
-  successScreen.classList.add("hidden");
-  inputScreen.classList.remove("hidden");
 });
 
 // 初期状態の表示
