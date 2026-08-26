@@ -28,7 +28,6 @@ body {
   letter-spacing: 1px;
 }
 
-/* 表示エリア */
 .display-box {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid #4a5568;
@@ -42,7 +41,6 @@ body {
   align-items: center;
 }
 
-/* 入力された数字を表示する部分 */
 .pin-display {
   font-size: 36px;
   font-weight: bold;
@@ -52,7 +50,6 @@ body {
   line-height: 44px;
 }
 
-/* 未入力時のメッセージ用スタイル */
 .pin-display.empty {
   font-size: 14px;
   font-weight: normal;
@@ -66,7 +63,6 @@ body {
   margin-top: 4px;
 }
 
-/* テンキーエリア */
 .keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -97,17 +93,26 @@ body {
   transform: scale(0.96);
 }
 
-/* 画面切り替え用の非表示スタイル */
+/* 非表示切り替え用 */
 .hidden {
   display: none !important;
 }
 
-.success-content {
-  padding: 20px 0;
-  font-size: 18px;
+/* 動画エリアのレイアウト */
+.video-container {
+  width: 100%;
+  margin-bottom: 15px;
+  background-color: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 #btn-reset {
-  margin-top: 20px;
   width: 100%;
 }
