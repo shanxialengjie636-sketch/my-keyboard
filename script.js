@@ -1,6 +1,6 @@
 let enteredPin = ""; 
 const maxLen = 4;
-const correctAnswer = "1234"; // ★正解の4桁の数字（自由に変更してください）
+const correctAnswer = "1378"; // ★正解の4桁の数字（自由に変更してください）
 
 const pinDisplay = document.getElementById("pin-display");
 const numKeys = document.querySelectorAll(".key-btn[data-val]");
