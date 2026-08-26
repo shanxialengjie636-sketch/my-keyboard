@@ -1,6 +1,6 @@
 let enteredPin = ""; 
 const maxLen = 4;
-const correctAnswer = "1378"; // ★ここに正解の4桁の数字を設定します
+const correctAnswer = "1234"; // ★正解の4桁の数字（自由に変更してください）
 
 const pinDisplay = document.getElementById("pin-display");
 const numKeys = document.querySelectorAll(".key-btn[data-val]");
@@ -9,8 +9,10 @@ const btnConfirm = document.getElementById("btn-confirm");
 
 const inputScreen = document.getElementById("input-screen");
 const successScreen = document.getElementById("success-screen");
+const successVideo = document.getElementById("success-video");
 const btnReset = document.getElementById("btn-reset");
 
+// 画面表示の更新
 function updateDisplay() {
   if (enteredPin.length === 0) {
     pinDisplay.textContent = "暗証番号を入力してください";
@@ -21,6 +23,7 @@ function updateDisplay() {
   }
 }
 
+// 数字入力
 numKeys.forEach(button => {
   button.addEventListener("click", () => {
     if (enteredPin.length < maxLen) {
@@ -30,6 +33,7 @@ numKeys.forEach(button => {
   });
 });
 
+// 1文字削除
 btnDelete.addEventListener("click", () => {
   if (enteredPin.length > 0) {
     enteredPin = enteredPin.slice(0, -1);
@@ -37,14 +41,20 @@ btnDelete.addEventListener("click", () => {
   }
 });
 
-// 確定ボタンの判定処理
+// 確定ボタンの判定
 btnConfirm.addEventListener("click", () => {
   if (enteredPin === correctAnswer) {
-    // 正解の場合：入力画面を隠して成功画面を表示
+    // 正解：入力画面を隠して動画画面を表示
     inputScreen.classList.add("hidden");
     successScreen.classList.remove("hidden");
+    
+    // 動画を最初から再生
+    successVideo.currentTime = 0;
+    successVideo.play().catch(error => {
+      // ブラウザの自動再生制限がかかった場合の対策
+      console.log("自動再生が制限されました:", error);
+    });
   } else {
-    // 不正解の場合
     alert("暗証番号が違います。");
     enteredPin = "";
     updateDisplay();
@@ -53,10 +63,16 @@ btnConfirm.addEventListener("click", () => {
 
 // リセットボタン（最初に戻る）
 btnReset.addEventListener("click", () => {
+  // 動画を一時停止して巻き戻す
+  successVideo.pause();
+  successVideo.currentTime = 0;
+  
   enteredPin = "";
   updateDisplay();
+  
   successScreen.classList.add("hidden");
   inputScreen.classList.remove("hidden");
 });
 
+// 初期状態の表示
 updateDisplay();
